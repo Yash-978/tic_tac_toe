@@ -1,16 +1,20 @@
 import 'package:flutter/material.dart';
 
-class HomeScreen extends StatefulWidget {
-  const HomeScreen({super.key});
+class TicTac extends StatefulWidget {
+  const TicTac({super.key});
 
   @override
-  State<HomeScreen> createState() => _HomeScreenState();
+  State<TicTac> createState() => _TicTacState();
 }
-List <int> matchedIndex=[];
-String resultDeclaration='';
+
+List<int> matchedIndex = [];
+bool winnerFound=false;
+int filledBoxes = 0;
+String resultDeclaration = '';
 int drawCondition = 0;
 int O_Score = 0;
 int X_Score = 0;
+String showOX = '';
 bool O_Turn = true; /*first player turn*/
 List<String> TicTacList = [
   '',
@@ -23,16 +27,15 @@ List<String> TicTacList = [
   '',
   '',
 ];
-String showOX = '';
 
-class _HomeScreenState extends State<HomeScreen> {
+class _TicTacState extends State<TicTac> {
   @override
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black12,
         body: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceEvenly,
           children: [
             Container(
               child: Row(
@@ -87,9 +90,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     return GestureDetector(
                       onTap: () => Tapped(index),
                       child: Container(
-
                         decoration: BoxDecoration(
-                          // color: matchedIndex.contains(index)?Colors.yellow : ed,
+                            // color: matchedIndex.contains(index)?Colors.yellow : ed,
                             border: Border.all(color: Colors.white)),
                         child: Center(
                           child: Text(
@@ -105,6 +107,19 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }),
             ),
+            Center(
+              child: Text(
+                resultDeclaration,
+                style: TextStyle(
+                  color: Colors.white,
+                  fontWeight: FontWeight.bold,
+                  fontSize: 40,
+                ),
+              ),
+            ),
+            SizedBox(
+              height: 60,
+            ),
           ],
         ),
       ),
@@ -115,10 +130,10 @@ class _HomeScreenState extends State<HomeScreen> {
     setState(() {
       if (O_Turn && TicTacList[index] == '') {
         TicTacList[index] = 'O';
-        drawCondition++;
+        filledBoxes++;
       } else if (!O_Turn && TicTacList[index] == '') {
         TicTacList[index] = 'X';
-        drawCondition++;
+        filledBoxes++;
       }
       O_Turn = !O_Turn;
       CheckWinner();
@@ -131,114 +146,97 @@ class _HomeScreenState extends State<HomeScreen> {
         TicTacList[0] == TicTacList[2] &&
         TicTacList[0] != '') {
       setState(() {
-        matchedIndex.addAll([0,1,2]);
-        GreetingBox(TicTacList[0]);
+        resultDeclaration = 'Player ' + TicTacList[0] + ' Wins';
+        UpdateScore(TicTacList[0]);
+        matchedIndex.addAll([0, 1, 2]);
       });
     }
     /*check 2nd Row*/
     if (TicTacList[3] == TicTacList[4] &&
         TicTacList[3] == TicTacList[5] &&
         TicTacList[3] != '') {
-      GreetingBox(TicTacList[3]);
+      setState(() {
+        resultDeclaration = 'Player' + TicTacList[3] + 'Wins';
+        UpdateScore(TicTacList[3]);
+        matchedIndex.addAll([3, 4, 5]);
+      });
     }
     /*check 3rd Row*/
     if (TicTacList[6] == TicTacList[7] &&
         TicTacList[6] == TicTacList[8] &&
         TicTacList[6] != '') {
-      GreetingBox(TicTacList[6]);
+      setState(() {
+        resultDeclaration = 'Player' + TicTacList[6] + 'Wins';
+        UpdateScore(TicTacList[6]);
+        matchedIndex.addAll([6, 7, 8]);
+      });
     }
     /*check 1st Column*/
     if (TicTacList[0] == TicTacList[3] &&
         TicTacList[0] == TicTacList[6] &&
         TicTacList[0] != '') {
-      GreetingBox(TicTacList[0]);
+      setState(() {
+        resultDeclaration = 'Player' + TicTacList[0] + 'Wins';
+        UpdateScore(TicTacList[0]);
+        matchedIndex.addAll([0, 3, 6]);
+      });
     }
     /*check 2nd Column*/
     if (TicTacList[1] == TicTacList[4] &&
         TicTacList[1] == TicTacList[7] &&
         TicTacList[1] != '') {
-      GreetingBox(TicTacList[1]);
+      setState(() {
+        resultDeclaration = 'Player' + TicTacList[1] + 'Wins';
+        UpdateScore(TicTacList[1]);
+        matchedIndex.addAll([1, 4, 7]);
+      });
     }
 
     /*check 3rd Column*/
     if (TicTacList[2] == TicTacList[5] &&
         TicTacList[2] == TicTacList[8] &&
         TicTacList[2] != '') {
-      GreetingBox(TicTacList[2]);
+      setState(() {
+        resultDeclaration = 'Player' + TicTacList[2] + 'Wins';
+        UpdateScore(TicTacList[2]);
+        matchedIndex.addAll([2, 5, 8]);
+      });
     }
 
     /*Check diagonal*/
     if (TicTacList[6] == TicTacList[2] &&
         TicTacList[6] == TicTacList[4] &&
         TicTacList[6] != '') {
-      GreetingBox(TicTacList[6]);
+      setState(() {
+        resultDeclaration = 'Player' + TicTacList[6] + 'Wins';
+        UpdateScore(TicTacList[6]);
+        matchedIndex.addAll([6, 2, 4]);
+      });
     }
     /*Check diagonal*/
     if (TicTacList[0] == TicTacList[4] &&
         TicTacList[0] == TicTacList[8] &&
         TicTacList[0] != '') {
-      GreetingBox(TicTacList[0]);
+      setState(() {
+        resultDeclaration = 'Player' + TicTacList[0] + 'Wins';
+        UpdateScore(TicTacList[0]);
+        matchedIndex.addAll([0, 8, 4]);
+      });
+    }
+     if (!winnerFound && filledBoxes==9)
+    {
+      setState(() {
+        resultDeclaration = 'Draw';
+      });
     }
     /**/
-
-    else if (drawCondition == 9) {
-      DrawBox();
-    }
   }
 
-  void GreetingBox(String winner) {
-    showDialog(
-        barrierDismissible: false,
-        /*jab dialog box open hota he tab agar screen
-        ke side par kahi par click kar dene par woh dialog
-         box hatt jata or ye false karne par hatega nhi*/
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('WINNER ! : ' + winner),
-            actions: [
-              ElevatedButton(
-                  onPressed: () {
-                    RefressGame();
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Play Again'))
-            ],
-          );
-        });
+  void UpdateScore(String winner) {
     if (winner == 'O') {
       O_Score++;
     } else if (winner == 'X') {
       X_Score++;
     }
-    RefressGame();
-  }
-
-  void RefressGame() {
-    setState(() {
-      for (int i = 0; i < 9; i++) {
-        TicTacList[i] = '';
-      }
-    });
-    drawCondition = 0;
-  }
-
-  void DrawBox() {
-    showDialog(
-        barrierDismissible: false,
-        context: context,
-        builder: (BuildContext context) {
-          return AlertDialog(
-            title: Text('Draw'),
-            actions: [
-              ElevatedButton(
-                  onPressed: () {
-                    RefressGame();
-                    Navigator.of(context).pop();
-                  },
-                  child: Text('Play Again'))
-            ],
-          );
-        });
   }
 }
