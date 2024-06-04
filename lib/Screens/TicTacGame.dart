@@ -84,7 +84,7 @@ class _TicTacState extends State<TicTac> {
               ),
             ),
             Expanded(
-              flex: 3,
+
               child: GridView.builder(
                   itemCount: 9,
                   gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
