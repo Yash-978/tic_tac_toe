@@ -7,9 +7,12 @@ class TicTac extends StatefulWidget {
   State<TicTac> createState() => _TicTacState();
 }
 
+int attempt =0; /*used to show start button first time and
+ the from the 2nd it will show play again in the
+ elevated button below*/
 List<int> matchedIndex = [];
-bool winnerFound=false;
-int filledBoxes = 0;
+bool winnerFound = false;
+int filledBoxes = 0; /*to count the how many boxes are filled*/
 String resultDeclaration = '';
 int drawCondition = 0;
 int O_Score = 0;
@@ -91,7 +94,8 @@ class _TicTacState extends State<TicTac> {
                       onTap: () => Tapped(index),
                       child: Container(
                         decoration: BoxDecoration(
-                            // color: matchedIndex.contains(index)?Colors.yellow : ed,
+                            color: matchedIndex.contains(index) ? Colors.yellow
+                                : Colors.red,
                             border: Border.all(color: Colors.white)),
                         child: Center(
                           child: Text(
@@ -117,8 +121,18 @@ class _TicTacState extends State<TicTac> {
                 ),
               ),
             ),
+            ElevatedButton(
+                onPressed: () {
+                  ClearBoard();
+                  attempt++;
+
+                },
+                child: Text(
+                  attempt == 0 ? 'Start' : 'Play Again!',
+                  style: TextStyle(fontSize: 30),
+                )),
             SizedBox(
-              height: 60,
+              height: 160,
             ),
           ],
         ),
@@ -135,7 +149,7 @@ class _TicTacState extends State<TicTac> {
         TicTacList[index] = 'X';
         filledBoxes++;
       }
-      O_Turn = !O_Turn;
+      O_Turn = !O_Turn; /*to change player turn O to X and vice versa */
       CheckWinner();
     });
   }
@@ -223,8 +237,7 @@ class _TicTacState extends State<TicTac> {
         matchedIndex.addAll([0, 8, 4]);
       });
     }
-     if (!winnerFound && filledBoxes==9)
-    {
+    if (!winnerFound && filledBoxes == 9) {
       setState(() {
         resultDeclaration = 'Draw';
       });
@@ -238,5 +251,16 @@ class _TicTacState extends State<TicTac> {
     } else if (winner == 'X') {
       X_Score++;
     }
+  }
+
+  void ClearBoard() {
+    setState(() {
+      for (int i = 0; i < 9; i++) {
+        TicTacList[i] =
+            ''; /*if all the boxes are empty then the result declaration will be empty */
+      }
+      resultDeclaration = '';
+    });
+    filledBoxes = 0;
   }
 }

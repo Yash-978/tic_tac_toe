@@ -6,8 +6,8 @@ class AppRoutes
 {
   static Map<String,Widget Function (BuildContext)>routes={
 
-    // '/':(context)=>TicTac(),
-    '/':(context)=>HomeScreen(),
+    '/':(context)=>TicTac(),
+    '/home':(context)=>HomeScreen(),
 
   };
 }
