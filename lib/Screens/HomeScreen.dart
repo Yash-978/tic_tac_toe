@@ -10,6 +10,7 @@ class HomeScreen extends StatefulWidget {
 // static var Newfont
 List<int> matchedIndex = [];
 String resultDeclaration = '';
+int attempt=0;
 int drawCondition = 0;
 int O_Score = 0;
 int X_Score = 0;
@@ -222,7 +223,11 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('WINNER ! : ' + winner),
+            title: Text('WINNER ! : ' + winner,style: GoogleFonts.pressStart2p(
+              color: Colors.black,
+              fontWeight: FontWeight.bold,
+              fontSize: 20,
+            ),),
             actions: [
               ElevatedButton(
                   onPressed: () {
@@ -232,7 +237,14 @@ class _HomeScreenState extends State<HomeScreen> {
                       matchedIndex = [];/*to rebuild color to empty*/
                     });
                   },
-                  child: Text('Play Again'))
+                  child: Text(
+                    // attempt == 0 ? 'Start' : 'Play Again!'
+                    'Play Again!'
+                    ,style: GoogleFonts.pressStart2p(
+                    color: Colors.black,
+                    fontWeight: FontWeight.bold,
+                    fontSize: 15,
+                  ),))
             ],
           );
         });
