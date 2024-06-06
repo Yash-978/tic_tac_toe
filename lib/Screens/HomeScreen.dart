@@ -1,4 +1,5 @@
 import 'package:flutter/material.dart';
+import 'package:google_fonts/google_fonts.dart';
 
 class HomeScreen extends StatefulWidget {
   const HomeScreen({super.key});
@@ -6,8 +7,9 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
-List <int> matchedIndex=[];
-String resultDeclaration='';
+// static var Newfont
+List<int> matchedIndex = [];
+String resultDeclaration = '';
 int drawCondition = 0;
 int O_Score = 0;
 int X_Score = 0;
@@ -30,7 +32,7 @@ class _HomeScreenState extends State<HomeScreen> {
   Widget build(BuildContext context) {
     return SafeArea(
       child: Scaffold(
-        backgroundColor: Colors.black12,
+        backgroundColor: Colors.black,
         body: Column(
           // mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
@@ -42,16 +44,18 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Player O ',
-                        style: TextStyle(
+                        style: GoogleFonts.pressStart2p(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
+                            // fontFamily: 'DesignFont',
+
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
                         O_Score.toString(),
-                        style: TextStyle(
+                        style: GoogleFonts.pressStart2p(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
                     ],
@@ -60,16 +64,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Player X ',
-                        style: TextStyle(
+                        style: GoogleFonts.pressStart2p(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
                         X_Score.toString(),
-                        style: TextStyle(
+                        style: GoogleFonts.pressStart2p(
                             color: Colors.white,
-                            fontSize: 30,
+                            fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
                     ],
@@ -77,6 +81,7 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
+            SizedBox(height: 130,),
             Expanded(
               flex: 3,
               child: GridView.builder(
@@ -87,14 +92,15 @@ class _HomeScreenState extends State<HomeScreen> {
                     return GestureDetector(
                       onTap: () => Tapped(index),
                       child: Container(
-
                         decoration: BoxDecoration(
-                          // color: matchedIndex.contains(index)?Colors.yellow : ed,
+                            color: matchedIndex.contains(index)
+                                ? Colors.cyan.shade200
+                                : Colors.black,
                             border: Border.all(color: Colors.white)),
                         child: Center(
                           child: Text(
                             TicTacList[index],
-                            style: TextStyle(
+                            style: GoogleFonts.pressStart2p(
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 40,
@@ -131,7 +137,7 @@ class _HomeScreenState extends State<HomeScreen> {
         TicTacList[0] == TicTacList[2] &&
         TicTacList[0] != '') {
       setState(() {
-        matchedIndex.addAll([0,1,2]);
+        matchedIndex.addAll([0, 1, 2]);
         GreetingBox(TicTacList[0]);
       });
     }
@@ -139,45 +145,66 @@ class _HomeScreenState extends State<HomeScreen> {
     if (TicTacList[3] == TicTacList[4] &&
         TicTacList[3] == TicTacList[5] &&
         TicTacList[3] != '') {
-      GreetingBox(TicTacList[3]);
+      setState(() {
+        matchedIndex.addAll([1, 3, 5]);
+        GreetingBox(TicTacList[3]);
+      });
     }
     /*check 3rd Row*/
     if (TicTacList[6] == TicTacList[7] &&
         TicTacList[6] == TicTacList[8] &&
         TicTacList[6] != '') {
-      GreetingBox(TicTacList[6]);
+      setState(() {
+        matchedIndex.addAll([6, 7, 8]);
+        GreetingBox(TicTacList[6]);
+      });
     }
     /*check 1st Column*/
     if (TicTacList[0] == TicTacList[3] &&
         TicTacList[0] == TicTacList[6] &&
         TicTacList[0] != '') {
-      GreetingBox(TicTacList[0]);
+      setState(() {
+        matchedIndex.addAll([0, 3, 6]);
+        GreetingBox(TicTacList[0]);
+      });
     }
     /*check 2nd Column*/
     if (TicTacList[1] == TicTacList[4] &&
         TicTacList[1] == TicTacList[7] &&
         TicTacList[1] != '') {
-      GreetingBox(TicTacList[1]);
+      setState(() {
+        matchedIndex.addAll([1, 4, 7]);
+        GreetingBox(TicTacList[1]);
+      });
     }
 
     /*check 3rd Column*/
     if (TicTacList[2] == TicTacList[5] &&
         TicTacList[2] == TicTacList[8] &&
         TicTacList[2] != '') {
-      GreetingBox(TicTacList[2]);
+      setState(() {
+        matchedIndex.addAll([2, 5, 8]);
+        GreetingBox(TicTacList[2]);
+      });
     }
 
     /*Check diagonal*/
     if (TicTacList[6] == TicTacList[2] &&
         TicTacList[6] == TicTacList[4] &&
         TicTacList[6] != '') {
-      GreetingBox(TicTacList[6]);
+      setState(() {
+        matchedIndex.addAll([6, 2, 4]);
+        GreetingBox(TicTacList[6]);
+      });
     }
     /*Check diagonal*/
     if (TicTacList[0] == TicTacList[4] &&
         TicTacList[0] == TicTacList[8] &&
         TicTacList[0] != '') {
-      GreetingBox(TicTacList[0]);
+      setState(() {
+        matchedIndex.addAll([0, 4, 8]);
+        GreetingBox(TicTacList[0]);
+      });
     }
     /**/
 
@@ -201,6 +228,9 @@ class _HomeScreenState extends State<HomeScreen> {
                   onPressed: () {
                     RefressGame();
                     Navigator.of(context).pop();
+                    setState(() {
+                      matchedIndex = [];/*to rebuild color to empty*/
+                    });
                   },
                   child: Text('Play Again'))
             ],

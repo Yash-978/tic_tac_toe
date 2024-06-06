@@ -34,6 +34,8 @@ List<String> TicTacList = [
 class _TicTacState extends State<TicTac> {
   @override
   Widget build(BuildContext context) {
+    double h=MediaQuery.of(context).size.height;
+    double w=MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black12,
@@ -83,6 +85,7 @@ class _TicTacState extends State<TicTac> {
                 ],
               ),
             ),
+            SizedBox(height: h*0.060,),
             Expanded(
 
               child: GridView.builder(
@@ -260,6 +263,7 @@ class _TicTacState extends State<TicTac> {
             ''; /*if all the boxes are empty then the result declaration will be empty */
       }
       resultDeclaration = '';
+      matchedIndex=[];
     });
     filledBoxes = 0;
   }
