@@ -86,10 +86,15 @@ flutter:
   #       - asset: fonts/TrajanPro.ttf
   #       - asset: fonts/TrajanPro_Bold.ttf
   #         weight: 700
+  fonts:
+    - family: font
+      fonts:
+        - asset: Assets/DesignFont/font.ttf
+          style: italic
   #
 #  fonts:
 #    family: DesignFont
 #    fonts:
-#      - Assets/DesignFont/PressStart2P-Regular.ttf
+#      - Assets/DesignFont/font.ttf
   # For details regarding fonts from package dependencies,
   # see https://flutter.dev/custom-fonts/#from-packages

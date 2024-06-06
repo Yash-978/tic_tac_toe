@@ -7,10 +7,11 @@ class HomeScreen extends StatefulWidget {
   @override
   State<HomeScreen> createState() => _HomeScreenState();
 }
+
 // static var Newfont
 List<int> matchedIndex = [];
 String resultDeclaration = '';
-int attempt=0;
+int attempt = 0;
 int drawCondition = 0;
 int O_Score = 0;
 int X_Score = 0;
@@ -45,7 +46,8 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Player O ',
-                        style: GoogleFonts.pressStart2p(
+                        style: TextStyle(
+                            fontFamily: 'font',
                             color: Colors.white,
                             fontSize: 20,
                             // fontFamily: 'DesignFont',
@@ -54,7 +56,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       ),
                       Text(
                         O_Score.toString(),
-                        style: GoogleFonts.pressStart2p(
+                        style: TextStyle(
+                            fontFamily: 'font',
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w500),
@@ -65,14 +68,16 @@ class _HomeScreenState extends State<HomeScreen> {
                     children: [
                       Text(
                         'Player X ',
-                        style: GoogleFonts.pressStart2p(
+                        style: TextStyle(
+                            fontFamily: 'font',
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w500),
                       ),
                       Text(
                         X_Score.toString(),
-                        style: GoogleFonts.pressStart2p(
+                        style: TextStyle(
+                            fontFamily: 'font',
                             color: Colors.white,
                             fontSize: 20,
                             fontWeight: FontWeight.w500),
@@ -82,7 +87,9 @@ class _HomeScreenState extends State<HomeScreen> {
                 ],
               ),
             ),
-            SizedBox(height: 130,),
+            SizedBox(
+              height: 130,
+            ),
             Expanded(
               flex: 3,
               child: GridView.builder(
@@ -101,7 +108,8 @@ class _HomeScreenState extends State<HomeScreen> {
                         child: Center(
                           child: Text(
                             TicTacList[index],
-                            style: GoogleFonts.pressStart2p(
+                            style: TextStyle(
+                              fontFamily: 'font',
                               color: Colors.white,
                               fontWeight: FontWeight.bold,
                               fontSize: 40,
@@ -223,28 +231,32 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('WINNER ! : ' + winner,style: GoogleFonts.pressStart2p(
-              color: Colors.black,
-              fontWeight: FontWeight.bold,
-              fontSize: 20,
-            ),),
+            title: Text(
+              'WINNER ! : ' + winner,
+              style: GoogleFonts.pressStart2p(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 20,
+              ),
+            ),
             actions: [
               ElevatedButton(
                   onPressed: () {
                     RefressGame();
                     Navigator.of(context).pop();
                     setState(() {
-                      matchedIndex = [];/*to rebuild color to empty*/
+                      matchedIndex = []; /*to rebuild color to empty*/
                     });
                   },
                   child: Text(
                     // attempt == 0 ? 'Start' : 'Play Again!'
-                    'Play Again!'
-                    ,style: GoogleFonts.pressStart2p(
-                    color: Colors.black,
-                    fontWeight: FontWeight.bold,
-                    fontSize: 15,
-                  ),))
+                    'Play Again!',
+                    style: GoogleFonts.pressStart2p(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ))
             ],
           );
         });
