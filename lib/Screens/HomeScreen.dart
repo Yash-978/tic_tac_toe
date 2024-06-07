@@ -36,59 +36,63 @@ class _HomeScreenState extends State<HomeScreen> {
       child: Scaffold(
         backgroundColor: Colors.black,
         body: Column(
-          // mainAxisAlignment: MainAxisAlignment.spaceAround,
+          mainAxisAlignment: MainAxisAlignment.spaceAround,
           children: [
-            Container(
-              child: Row(
-                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-                children: [
-                  Column(
-                    children: [
-                      Text(
-                        'Player O ',
-                        style: TextStyle(
-                            fontFamily: 'font',
-                            color: Colors.white,
-                            fontSize: 20,
-                            // fontFamily: 'DesignFont',
+            SizedBox(
+              height: 40,
+            ),
+            Row(
+              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+              children: [
+                SizedBox(
+                  width: 15,
+                ),
+                Column(
+                  children: [
+                    Text(
+                      'Player O ',
+                      style: TextStyle(
+                          fontFamily: 'font',
+                          color: Colors.white,
+                          fontSize: 20,
+                          // fontFamily: 'DesignFont',
 
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        O_Score.toString(),
-                        style: TextStyle(
-                            fontFamily: 'font',
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                  Column(
-                    children: [
-                      Text(
-                        'Player X ',
-                        style: TextStyle(
-                            fontFamily: 'font',
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500),
-                      ),
-                      Text(
-                        X_Score.toString(),
-                        style: TextStyle(
-                            fontFamily: 'font',
-                            color: Colors.white,
-                            fontSize: 20,
-                            fontWeight: FontWeight.w500),
-                      ),
-                    ],
-                  ),
-                ],
-              ),
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      O_Score.toString(),
+                      style: TextStyle(
+                          fontFamily: 'font',
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+                Column(
+                  children: [
+                    Text(
+                      'Player X ',
+                      style: TextStyle(
+                          fontFamily: 'font',
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                    Text(
+                      X_Score.toString(),
+                      style: TextStyle(
+                          fontFamily: 'font',
+                          color: Colors.white,
+                          fontSize: 20,
+                          fontWeight: FontWeight.w500),
+                    ),
+                  ],
+                ),
+              ],
             ),
             SizedBox(
-              height: 130,
+              height: 120,
             ),
             Expanded(
               flex: 3,
@@ -120,6 +124,13 @@ class _HomeScreenState extends State<HomeScreen> {
                     );
                   }),
             ),
+            ElevatedButton(onPressed: () {
+              setState(() {
+                O_Score=0;
+                X_Score=0;
+              });
+            }, child: Text('Reset')),
+
           ],
         ),
       ),
