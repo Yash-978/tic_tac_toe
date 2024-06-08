@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/Screens/HomeScreen.dart';
+
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
 
@@ -23,7 +24,7 @@ class _SplashScreenState extends State<SplashScreen> {
       );
     });
   }
-
+@override
   Widget build(BuildContext context) {
     return Scaffold(
       body: Column(
@@ -47,19 +48,26 @@ class _SplashScreenState extends State<SplashScreen> {
                       image: DecorationImage(
                           image: AssetImage('Assets/Images/XOGameClubLogo.png'),
                           fit: BoxFit.cover),
-
                       borderRadius: BorderRadius.circular(15)),
-                  child: Text('Tic Tac Toe',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
+                  child: Text(
+                    'Tic Tac Toe',
+                    style: TextStyle(
+                        color: Colors.white,
+                        fontSize: 30,
+                        fontWeight: FontWeight.bold),
+                  ),
                 ),
                 SizedBox(
                   height: 10,
                 ),
                 // AppName(Size: 30.00),
-                SizedBox(height: 10,),
+                SizedBox(
+                  height: 10,
+                ),
                 LinearProgressIndicator(
                   minHeight: 3,
                   backgroundColor: Colors.white,
-                  color: Colors.deepPurpleAccent.shade200,
+                  color: Colors.black,
                 )
               ],
             ),
