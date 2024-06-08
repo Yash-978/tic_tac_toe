@@ -1,3 +1,5 @@
+import 'dart:async';
+
 import 'package:flutter/material.dart';
 import 'package:google_fonts/google_fonts.dart';
 
@@ -30,108 +32,128 @@ List<String> TicTacList = [
 String showOX = '';
 
 class _HomeScreenState extends State<HomeScreen> {
+
   @override
   Widget build(BuildContext context) {
+    double h= MediaQuery.of(context).size.height;
+    double w= MediaQuery.of(context).size.width;
     return SafeArea(
       child: Scaffold(
         backgroundColor: Colors.black,
-        body: Column(
-          mainAxisAlignment: MainAxisAlignment.spaceAround,
-          children: [
-            SizedBox(
-              height: 40,
-            ),
-            Row(
-              mainAxisAlignment: MainAxisAlignment.spaceEvenly,
-              children: [
-                SizedBox(
-                  width: 15,
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'Player O ',
-                      style: TextStyle(
-                          fontFamily: 'font',
-                          color: Colors.white,
-                          fontSize: 20,
-                          // fontFamily: 'DesignFont',
+        body: Container(
+          padding: EdgeInsets.all(8),
+          height: h*0.990+2,
+          width: w*0.980+10,
+          decoration: BoxDecoration(
+              image: DecorationImage(
+                  image: AssetImage('Assets/Images/tic toc tce.jpg'),
+              fit: BoxFit.fill)),
+          child: Column(
+            mainAxisAlignment: MainAxisAlignment.spaceAround,
+            children: [
+              SizedBox(
+                height: h*0.085,
+              ),
+              Row(
+                mainAxisAlignment: MainAxisAlignment.spaceEvenly,
+                children: [
+                  SizedBox(
+                    width: w*0.009,
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        'Player O ',
+                        style: TextStyle(
+                            fontFamily: 'font',
+                            color: Colors.black,
+                            fontSize: 20,
+                            // fontFamily: 'DesignFont',
 
-                          fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      O_Score.toString(),
-                      style: TextStyle(
-                          fontFamily: 'font',
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-                Column(
-                  children: [
-                    Text(
-                      'Player X ',
-                      style: TextStyle(
-                          fontFamily: 'font',
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500),
-                    ),
-                    Text(
-                      X_Score.toString(),
-                      style: TextStyle(
-                          fontFamily: 'font',
-                          color: Colors.white,
-                          fontSize: 20,
-                          fontWeight: FontWeight.w500),
-                    ),
-                  ],
-                ),
-              ],
-            ),
-            SizedBox(
-              height: 120,
-            ),
-            Expanded(
-              flex: 3,
-              child: GridView.builder(
-                  itemCount: 9,
-                  gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
-                      crossAxisCount: 3),
-                  itemBuilder: (BuildContext context, int index) {
-                    return GestureDetector(
-                      onTap: () => Tapped(index),
-                      child: Container(
-                        decoration: BoxDecoration(
-                            color: matchedIndex.contains(index)
-                                ? Colors.cyan.shade200
-                                : Colors.black,
-                            border: Border.all(color: Colors.white)),
-                        child: Center(
-                          child: Text(
-                            TicTacList[index],
-                            style: TextStyle(
-                              fontFamily: 'font',
-                              color: Colors.white,
-                              fontWeight: FontWeight.bold,
-                              fontSize: 40,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        O_Score.toString(),
+                        style: TextStyle(
+                            fontFamily: 'font',
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                  Column(
+                    children: [
+                      Text(
+                        'Player X ',
+                        style: TextStyle(
+                            fontFamily: 'font',
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                      Text(
+                        X_Score.toString(),
+                        style: TextStyle(
+                            fontFamily: 'font',
+                            color: Colors.black,
+                            fontSize: 20,
+                            fontWeight: FontWeight.w500),
+                      ),
+                    ],
+                  ),
+                ],
+              ),
+              SizedBox(
+                height: 120,
+              ),
+              Expanded(
+                flex: 3,
+                child: GridView.builder(
+                    itemCount: 9,
+                    gridDelegate: SliverGridDelegateWithFixedCrossAxisCount(
+                        crossAxisCount: 3),
+                    itemBuilder: (BuildContext context, int index) {
+                      return GestureDetector(
+                        onTap: () => Tapped(index),
+                        child: Container(
+                          padding: EdgeInsets.all(4),
+                          margin: EdgeInsets.all(5),
+                          decoration: BoxDecoration(
+                              color: matchedIndex.contains(index)
+                                  ? Colors.green
+                                  : Colors.black26,
+                              border: Border.all(color:
+                              // Colors.green
+                                Color(0xffFFD700),
+                              ),
+                            borderRadius: BorderRadius.circular(20)
+                          ),
+                          child: Center(
+                            child: Text(
+                              TicTacList[index],
+                              style: TextStyle(
+                                fontFamily: 'font',
+                                color: Colors.black,
+                                fontWeight: FontWeight.bold,
+                                fontSize: 40,
+                              ),
                             ),
                           ),
                         ),
-                      ),
-                    );
-                  }),
-            ),
-            ElevatedButton(onPressed: () {
-              setState(() {
-                O_Score=0;
-                X_Score=0;
-              });
-            }, child: Text('Reset')),
-
-          ],
+                      );
+                    }),
+              ),
+              ElevatedButton(
+                  onPressed: () {
+                    setState(() {
+                      O_Score = 0;
+                      X_Score = 0;
+                    });
+                  },
+                  child: Text('Reset')),
+            ],
+          ),
         ),
       ),
     );
@@ -241,6 +263,14 @@ class _HomeScreenState extends State<HomeScreen> {
          box hatt jata or ye false karne par hatega nhi*/
         context: context,
         builder: (BuildContext context) {
+          // Timer(Duration(seconds: 3), () {
+          //   Navigator.pushReplacement(
+          //     context,
+          //     MaterialPageRoute(
+          //       builder: (context) => HomeScreen(),
+          //     ),
+          //   );
+          // });
           return AlertDialog(
             title: Text(
               'WINNER ! : ' + winner,
@@ -294,14 +324,28 @@ class _HomeScreenState extends State<HomeScreen> {
         context: context,
         builder: (BuildContext context) {
           return AlertDialog(
-            title: Text('Draw'),
+            title: Text(
+              'Draw :',
+              style: GoogleFonts.pressStart2p(
+                color: Colors.black,
+                fontWeight: FontWeight.bold,
+                fontSize: 15,
+              ),
+            ),
             actions: [
               ElevatedButton(
                   onPressed: () {
                     RefressGame();
                     Navigator.of(context).pop();
                   },
-                  child: Text('Play Again'))
+                  child: Text(
+                    'Play Again',
+                    style: GoogleFonts.pressStart2p(
+                      color: Colors.black,
+                      fontWeight: FontWeight.bold,
+                      fontSize: 15,
+                    ),
+                  ))
             ],
           );
         });

@@ -2,6 +2,7 @@ import 'dart:async';
 
 import 'package:flutter/material.dart';
 import 'package:tic_tac_toe/Screens/HomeScreen.dart';
+import 'package:tic_tac_toe/Screens/enterpage.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -19,7 +20,7 @@ class _SplashScreenState extends State<SplashScreen> {
       Navigator.pushReplacement(
         context,
         MaterialPageRoute(
-          builder: (context) => HomeScreen(),
+          builder: (context) => EnterPage(),
         ),
       );
     });
@@ -46,7 +47,7 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: 190,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('Assets/Images/XOGameClubLogo.png'),
+                          image: AssetImage('Assets/Images/tic-tac-toe_footy logo 3 . jpg.png'),
                           fit: BoxFit.cover),
                       borderRadius: BorderRadius.circular(15)),
                   child: Text(
