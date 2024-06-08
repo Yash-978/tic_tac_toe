@@ -45,15 +45,11 @@ class _SplashScreenState extends State<SplashScreen> {
                   width: 190,
                   decoration: BoxDecoration(
                       image: DecorationImage(
-                          image: AssetImage('Assets/Images/XO Game Club Logo.png'),
+                          image: AssetImage('Assets/Images/XOGameClubLogo.png'),
                           fit: BoxFit.cover),
 
                       borderRadius: BorderRadius.circular(15)),
-                  child: Column(mainAxisAlignment: MainAxisAlignment.end,
-                    children: [
-                      Text('Tic Tac Toe',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
-                    ],
-                  ),
+                  child: Text('Tic Tac Toe',style: TextStyle(color: Colors.white,fontSize: 30,fontWeight: FontWeight.bold),),
                 ),
                 SizedBox(
                   height: 10,
